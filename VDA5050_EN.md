@@ -103,6 +103,7 @@ Version 3.0.0
 [7 Best practice](#7-best-practice)<br>
 [7.1 Error reference](#71-error-reference)<br>
 [7.2 Format of parameters](#72-format-of-parameters)<br>
+[7.3 Rotation on the spot](#73-rotation-on-the-spot)<br>
 [8 Glossary](#8-glossary)<br>
 [8.1 Definition](#81-definition)<br>
 
@@ -1851,6 +1852,23 @@ Examples for the `actionParameter` of an action "someAction" with key-value pair
 ]
 
 The reason for using the proposed scheme of "key": "actualKey", "value": "actualValue" is to keep the implementation generic. The "actualValue" can be of any possible JSON data type, such as float, bool, and even an object.
+
+
+## 7.3 Rotation on the spot
+
+A rotation on the spot should be represented as an edge between two nodes that share the same `x` and `y` coordinates but differ in `theta`. In this case, the edge must have `rotationAllowed` set to true and must not define a `trajectory`.
+
+Example:
+
+```
+"nodes": [
+  { "nodeId": "N1", "sequenceId": 4, "released": true, "actions": [], "nodePosition": { "x": 47.11, "y": 0.815, "mapId": "map1", "theta": 0 }},
+  { "nodeId": "N1", "sequenceId": 6, "released": true, "actions": [], "nodePosition": { "x": 47.11, "y": 0.815, "mapId": "map1", "theta": 1.5707964 }}
+],
+"edges": [
+  { "edgeId": "E1", "sequenceId": 5, "released": true, "startNodeId": "N1", "endNodeId": "N1", "rotationAllowed": true, "actions": [] }
+]
+```
 
 
 # 8 Glossary
